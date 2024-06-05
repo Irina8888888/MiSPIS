@@ -15,11 +15,9 @@ namespace MiSPIS
 {
     public partial class Form1 : Form
     {
+//подключение БД
 
-
-
-
-        //подключение базы данных
+        DataBase dataBase = new DataBase();
         public Form1()
         {
             InitializeComponent();
