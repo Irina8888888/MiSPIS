@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.АВТОРИЗАЦИЯ = new System.Windows.Forms.ListBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -36,19 +35,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // АВТОРИЗАЦИЯ
-            // 
-            this.АВТОРИЗАЦИЯ.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.АВТОРИЗАЦИЯ.Font = new System.Drawing.Font("Times New Roman", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.АВТОРИЗАЦИЯ.FormattingEnabled = true;
-            this.АВТОРИЗАЦИЯ.ItemHeight = 55;
-            this.АВТОРИЗАЦИЯ.Location = new System.Drawing.Point(65, 12);
-            this.АВТОРИЗАЦИЯ.Name = "АВТОРИЗАЦИЯ";
-            this.АВТОРИЗАЦИЯ.Size = new System.Drawing.Size(381, 59);
-            this.АВТОРИЗАЦИЯ.TabIndex = 3;
-            this.АВТОРИЗАЦИЯ.SelectedIndexChanged += new System.EventHandler(this.АВТОРИЗАЦИЯ_SelectedIndexChanged);
             // 
             // textBox3
             // 
@@ -117,11 +105,22 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(73, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(394, 55);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "АВТОРИЗАЦИЯ";
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(568, 364);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -129,7 +128,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.АВТОРИЗАЦИЯ);
             this.Name = "Login";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -139,7 +137,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.ListBox АВТОРИЗАЦИЯ;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label1;
@@ -147,6 +144,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label3;
     }
 }
 
