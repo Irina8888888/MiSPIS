@@ -13,12 +13,12 @@ using Npgsql;
 
 namespace MiSPIS
 {
-    public partial class Form1 : Form
+    public partial class Login : Form
     {
 //подключение БД
 
         DataBase dataBase = new DataBase();
-        public Form1()
+        public Login()
         {
             InitializeComponent();
 
@@ -29,5 +29,20 @@ namespace MiSPIS
 
         }
 
+        private void АВТОРИЗАЦИЯ_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form2 s = new Form2();//s-show показать
+            s.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
