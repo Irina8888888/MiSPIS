@@ -36,8 +36,20 @@ namespace MiSPIS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 s = new Form2();//s-show показать
-            s.Show();
+            if (textBox4.Text == "Urer1" && textBox3.Text == "12121")
+            { 
+                Form2 s = new Form2();
+                s.Show();
+
+                this.Hide();
+            }
+            else
+            {
+                textBox4.Text = "";
+                textBox3.Text = "";
+                MessageBox.Show("Неправильный логин или пароль");
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
