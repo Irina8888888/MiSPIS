@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 
@@ -21,6 +22,7 @@ namespace MiSPIS
         public Login()
         {
             InitializeComponent();
+            textBox3.UseSystemPasswordChar = true;
 
         }
 
@@ -36,7 +38,7 @@ namespace MiSPIS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox4.Text == "Urer1" && textBox3.Text == "12121")
+            if (textBox4.Text == "root" && textBox3.Text == "123456789")
             { 
                 Form2 s = new Form2();
                 s.Show();
@@ -55,6 +57,19 @@ namespace MiSPIS
         private void button2_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                textBox3.UseSystemPasswordChar = false;
+
+            }
+            else
+            {
+                textBox3.UseSystemPasswordChar = true;
+            }
         }
     }
 }
