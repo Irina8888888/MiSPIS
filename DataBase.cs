@@ -8,9 +8,9 @@ using MySql.Data.MySqlClient;
 
 namespace MiSPIS
 {
-     class DataBase
+    class DataBase
     {
-        MySqlConnection connection = new MySqlConnection(@"server=localhost;port=3306;username=root;password=123456789;database=sys;Integrated Security=True");
+        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programming\\C_sharp\\Authorization_MSSQL_VisualStudio\\my.ini;Integrated Security=True");
 
 
         public void openConnection()
@@ -25,10 +25,14 @@ namespace MiSPIS
                 connection.Close();
         }
 
-        public  MySqlConnection GetConnection()
+        public  SqlConnection GetConnection()
         {
             return connection;
         }
 
     }
 }
+
+//server=localhost;port=3306;username=root;password=123456789;database=sys;Integrated Security=True"
+
+//Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Programming\\C_sharp\\Authorization_MSSQL_VisualStudio\\alexsav.mdf;Integrated Security=True

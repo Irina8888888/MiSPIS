@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,16 @@ namespace MiSPIS
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //SqlDataAdapter dataAdapter = new SqlDataAdapter(textBox1.Text, SqlConnection);
+
+            DataSet ds = new DataSet();
+           // dataAdapter.Fill(ds);
+
+           // DataGridView.DataSource = DataSet.Tables[0];
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
