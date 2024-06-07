@@ -8,11 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace MiSPIS
 {
     public partial class Form2 : Form
     {
+
+        private SqlConnection sqlConnection = null;
+
         public Form2()
         {
             InitializeComponent();
@@ -35,6 +39,19 @@ namespace MiSPIS
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
+            
+            sqlConnection.Open();
+
+            if (sqlConnection.State == ConnectionState.Open)
+            {
+                MessageBox.Show("Подключение установлено");
+            }
 
         }
     }

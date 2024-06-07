@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
+using System.Configuration;
 
 
 namespace MiSPIS
@@ -70,6 +70,11 @@ namespace MiSPIS
             {
                 textBox3.UseSystemPasswordChar = true;
             }
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
