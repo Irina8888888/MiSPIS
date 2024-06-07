@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MiSPIS
 {
@@ -53,6 +54,21 @@ namespace MiSPIS
                 MessageBox.Show("Подключение установлено");
             }
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+             SqlCommand command = new SqlCommand
+                ($"INSERT INTO [Clients] (full_name,work_address,district,district_name) VALUES (@full_name,@work_address,@district,@district_name')", sqlConnection);
+
+            command.Parameters.AddWithValue("full_name", textBox2.Text);
+            command.Parameters.AddWithValue("work_address", textBox3.Text);
+            command.Parameters.AddWithValue("district", textBox4.Text);
+            command.Parameters.AddWithValue("district_name", textBox5.Text);
+
+            MessageBox.Show(command.ExecuteNonQuery().ToString());
+
+             
         }
     }
 }
