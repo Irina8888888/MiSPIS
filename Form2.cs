@@ -66,9 +66,20 @@ namespace MiSPIS
             command.Parameters.AddWithValue("district", textBox4.Text);
             command.Parameters.AddWithValue("district_name", textBox5.Text);
 
+            //command.ExecuteNonQuery();
             MessageBox.Show(command.ExecuteNonQuery().ToString());
 
              
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

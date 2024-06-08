@@ -38,7 +38,7 @@ namespace MiSPIS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox4.Text == "root" && textBox3.Text == "123456789")
+            if (textBox4.Text == "qwe" && textBox3.Text == "1234")
             { 
                 Form2 s = new Form2();
                 s.Show();
