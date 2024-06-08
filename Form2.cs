@@ -18,9 +18,29 @@ namespace MiSPIS
 
         private SqlConnection sqlConnection = null;
 
+    
         public Form2()
         {
             InitializeComponent();
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
+
+            sqlConnection.Open();
+
+            if (sqlConnection.State == ConnectionState.Open)
+            {
+                MessageBox.Show("Подключение установлено");
+            }
+
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT*FROM CLients, Housing, HousingExchange", sqlConnection);
+
+            DataSet db = new DataSet();
+            dataAdapter.Fill(db);
+            dataGridView1.DataSource = db.Tables[0];
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -30,33 +50,20 @@ namespace MiSPIS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //SqlDataAdapter dataAdapter = new SqlDataAdapter(textBox1.Text, SqlConnection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(textBox1.Text,sqlConnection);
 
-            DataSet ds = new DataSet();
-           // dataAdapter.Fill(ds);
+            DataSet dataSet = new DataSet(); //обьектное представление БД
+            dataAdapter.Fill(dataSet);
 
-           // DataGridView.DataSource = DataSet.Tables[0];
+            dataGridView1.DataSource = dataSet.Tables[0];
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"full_name  LIKE '%{textBox1.Text}%'";
         }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
-            
-            sqlConnection.Open();
-
-            if (sqlConnection.State == ConnectionState.Open)
-            {
-                MessageBox.Show("Подключение установлено");
-            }
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+             private void button3_Click(object sender, EventArgs e)
         {
              SqlCommand command = new SqlCommand
                 ($"INSERT INTO [Clients] (full_name,work_address,district,district_name) VALUES (@full_name,@work_address,@district,@district_name)", sqlConnection);
@@ -87,7 +94,7 @@ namespace MiSPIS
             SqlCommand command = new SqlCommand
                ($"INSERT INTO [HousingExchange] (full_name1,address1,num_rooms1,district_name1,full_name2,address2,num_rooms2,district_name2,data) VALUES (@full_name1,@address1,@num_rooms1,@district_name1,@full_name2,@address2,@num_rooms2,@district_name2,@exchange_data)", sqlConnection);
 
-            DateTime exchange_data = DateTime.Parse(textBox18.Text);//!!!!
+            DateTime data = DateTime.Parse(textBox18.Text);//!!!!
 
             command.Parameters.AddWithValue("full_name1", textBox10.Text);
             command.Parameters.AddWithValue("address1", textBox11.Text);
@@ -97,7 +104,7 @@ namespace MiSPIS
             command.Parameters.AddWithValue("address2", textBox15.Text);
             command.Parameters.AddWithValue("num_rooms2", textBox16.Text);
             command.Parameters.AddWithValue("district_name2", textBox17.Text);
-            command.Parameters.AddWithValue("exchange_data", $"{exchange_data.Month}/{exchange_data.Day}/{exchange_data.Year}");
+            command.Parameters.AddWithValue("exchange_data", $"{data.Month}/{data.Day}/{data.Year}");
 
             MessageBox.Show(command.ExecuteNonQuery().ToString());
         }
@@ -117,6 +124,36 @@ namespace MiSPIS
 
         }
 
-        
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SqlDataReader dataReader = null;
+
+            try                     //исключение
+            {
+                SqlCommand sqlCommand = new SqlCommand("");
+
+                dataReader = sqlCommand.ExecuteReader();
+
+                ListViewItem item = new ListViewItem();
+
+                while (dataReader.Read())
+                {
+                    item = new ListViewItem(new string[] { Convert.ToString(dataReader[""]),});
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (dataReader != null && !dataReader.IsClosed)
+                {
+                    dataReader.Close();
+                }
+            }
+        }
     }
+
 }
