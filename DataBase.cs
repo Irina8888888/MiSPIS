@@ -30,6 +30,10 @@ namespace MiSPIS
             return connection;
         }
 
+        internal MySqlConnection getConnection()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

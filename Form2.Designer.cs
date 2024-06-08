@@ -621,7 +621,7 @@
             this.button7.TabIndex = 1;
             this.button7.Text = "OK";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            //this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // textBox19
             // 

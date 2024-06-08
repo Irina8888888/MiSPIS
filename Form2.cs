@@ -34,7 +34,7 @@ namespace MiSPIS
             {
                 MessageBox.Show("Подключение установлено");
             }
-
+            // заполняем   dataGridView
             SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT*FROM CLients, Housing, HousingExchange", sqlConnection);
 
             DataSet db = new DataSet();
@@ -48,6 +48,7 @@ namespace MiSPIS
             Application.Exit();
         }
 
+        //поиск
         private void button2_Click(object sender, EventArgs e)
         {
             SqlDataAdapter dataAdapter = new SqlDataAdapter(textBox1.Text,sqlConnection);
@@ -63,6 +64,8 @@ namespace MiSPIS
             (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"full_name  LIKE '%{textBox1.Text}%'";
         }
 
+
+        //добавление
              private void button3_Click(object sender, EventArgs e)
         {
              SqlCommand command = new SqlCommand
@@ -124,36 +127,7 @@ namespace MiSPIS
 
         }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-            SqlDataReader dataReader = null;
-
-            try                     //исключение
-            {
-                SqlCommand sqlCommand = new SqlCommand("");
-
-                dataReader = sqlCommand.ExecuteReader();
-
-                ListViewItem item = new ListViewItem();
-
-                while (dataReader.Read())
-                {
-                    item = new ListViewItem(new string[] { Convert.ToString(dataReader[""]),});
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                if (dataReader != null && !dataReader.IsClosed)
-                {
-                    dataReader.Close();
-                }
-            }
-        }
+       
     }
 
 }

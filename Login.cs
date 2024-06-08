@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Npgsql;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Configuration;
+using MySql.Data.MySqlClient;
+
 
 
 namespace MiSPIS
@@ -38,19 +40,25 @@ namespace MiSPIS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox4.Text == "qwe" && textBox3.Text == "1234")
-            { 
-                Form2 s = new Form2();
-                s.Show();
+           String loginUsers = textBox4.Text;
+           String passUsers = textBox3.Text;
 
-                this.Hide();
-            }
+            DataBase db = new DataBase();
+
+            DataTable table = new DataTable();
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+
+            MySqlCommand command = new MySqlCommand("SELECT * FROM 'Users' WHERE 'login' = @uL AND 'pass'= @uP", db.getConnection());
+            command.Parameters.Add("@uL",MySqlDbType.VarChar).Value = loginUsers;
+            command.Parameters.Add("@uP",MySqlDbType.VarChar).Value = passUsers;
+
+            adapter.SelectCommand = command;
+            adapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+                MessageBox.Show("Успешно");
             else
-            {
-                textBox4.Text = "";
-                textBox3.Text = "";
-                MessageBox.Show("Неправильный логин или пароль");
-            }
+                MessageBox.Show("Неудача");
 
         }
 
