@@ -16,7 +16,13 @@ namespace MiSPIS
     public partial class Form2 : Form
     {
 
-        private SqlConnection sqlConnection = null;
+        public SqlConnection sqlConnection = null;
+
+        public string Txt
+        {
+            get { return textBox3.Text; }
+            set { textBox3.Text = value; }
+        }
 
     
         public Form2()
@@ -24,7 +30,7 @@ namespace MiSPIS
             InitializeComponent();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        public void Form2_Load(object sender, EventArgs e)
         {
             sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
 
@@ -127,7 +133,24 @@ namespace MiSPIS
 
         }
 
-       
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+            string Message;
+            Message = "Вы действительно хотите удалить запись?";
+
+            if (MessageBox.Show(Message, "Удаление",MessageBoxButtons.YesNo,MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                return;
+            }
+
+            string id;
+            id = dataGridView1.SelectedRows[0].Cells["id"].Value.ToString();
+
+            string sql = "Delete from DB where id =" + id;
+            //ExecSql(sql);
+
+        }
     }
 
 }

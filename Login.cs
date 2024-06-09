@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Npgsql;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Configuration;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
+
+
+
 
 
 
@@ -18,9 +20,10 @@ namespace MiSPIS
 {
     public partial class Login : Form
     {
-//подключение БД
 
-        DataBase dataBase = new DataBase();
+        private SqlConnection connection = null;
+       
+
         public Login()
         {
             InitializeComponent();
@@ -30,7 +33,8 @@ namespace MiSPIS
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
+            connection.Open();
         }
 
         private void АВТОРИЗАЦИЯ_SelectedIndexChanged(object sender, EventArgs e)
@@ -40,17 +44,23 @@ namespace MiSPIS
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Form2 fr = new Form2();
+            fr.Txt = this.textBox3.Text;
+
+            fr.ShowDialog();
+
            String loginUsers = textBox4.Text;
            String passUsers = textBox3.Text;
 
             DataBase db = new DataBase();
 
             DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            SqlDataAdapter adapter = new SqlDataAdapter();
 
-            MySqlCommand command = new MySqlCommand("SELECT * FROM 'Users' WHERE 'login' = @uL AND 'pass'= @uP", db.getConnection());
-            command.Parameters.Add("@uL",MySqlDbType.VarChar).Value = loginUsers;
-            command.Parameters.Add("@uP",MySqlDbType.VarChar).Value = passUsers;
+
+            SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE login = @uL AND pass= @uP", db.GetConnection());
+            command.Parameters.Add("@uL",SqlDbType.VarChar).Value = loginUsers;
+            command.Parameters.Add("@uP",SqlDbType.VarChar).Value = passUsers;
 
             adapter.SelectCommand = command;
             adapter.Fill(table);

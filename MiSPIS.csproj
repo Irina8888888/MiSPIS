@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBase.cs" />
+    <Compile Include="Hach.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
