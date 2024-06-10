@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Configuration;
 using System.Data.SqlClient;
+//using MiSPIS.Connection;
+using System.Security.Cryptography;
 
 
 
@@ -50,8 +52,7 @@ namespace MiSPIS
             fr.ShowDialog();
 
            String loginUsers = textBox4.Text;
-           String passUsers = textBox3.Text;
-
+         
             DataBase db = new DataBase();
 
             DataTable table = new DataTable();
@@ -60,15 +61,17 @@ namespace MiSPIS
 
             SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE login = @uL AND pass= @uP", db.GetConnection());
             command.Parameters.Add("@uL",SqlDbType.VarChar).Value = loginUsers;
-            command.Parameters.Add("@uP",SqlDbType.VarChar).Value = passUsers;
+            command.Parameters.Add("@uP",SqlDbType.VarChar).Value = Hach.PWhash(textBox3.Text);
+            var h = Hach.PWhash(textBox3.Text);
+
+            command.Parameters.Add("@uP",SqlDbType.VarChar).Value= textBox3.Text;
 
             adapter.SelectCommand = command;
             adapter.Fill(table);
 
             if (table.Rows.Count > 0)
-                MessageBox.Show("Успешно");
-            else
-                MessageBox.Show("Неудача");
+                fr.ShowDialog();
+          
 
         }
 

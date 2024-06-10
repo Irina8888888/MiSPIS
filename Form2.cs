@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Security.Cryptography;
 
 namespace MiSPIS
 {
@@ -101,18 +102,18 @@ namespace MiSPIS
         private void button6_Click(object sender, EventArgs e)
         {
             SqlCommand command = new SqlCommand
-               ($"INSERT INTO [HousingExchange] (full_name1,address1,num_rooms1,district_name1,full_name2,address2,num_rooms2,district_name2,data) VALUES (@full_name1,@address1,@num_rooms1,@district_name1,@full_name2,@address2,@num_rooms2,@district_name2,@exchange_data)", sqlConnection);
+               ($"INSERT INTO [HousingExchange] (full_name1,address1,num_rooms1,district1,full_name2,address2,num_rooms2,district2,exchange_data) VALUES (@full_name1,@address1,@num_rooms1,@district1,@full_name2,@address2,@num_rooms2,@district2,@exchange_data)", sqlConnection);
 
             DateTime data = DateTime.Parse(textBox18.Text);//!!!!
 
             command.Parameters.AddWithValue("full_name1", textBox10.Text);
             command.Parameters.AddWithValue("address1", textBox11.Text);
             command.Parameters.AddWithValue("num_rooms1", textBox12.Text);
-            command.Parameters.AddWithValue("district_name1", textBox13.Text);
+            command.Parameters.AddWithValue("district1", textBox13.Text);
             command.Parameters.AddWithValue("full_name2", textBox14.Text);
             command.Parameters.AddWithValue("address2", textBox15.Text);
             command.Parameters.AddWithValue("num_rooms2", textBox16.Text);
-            command.Parameters.AddWithValue("district_name2", textBox17.Text);
+            command.Parameters.AddWithValue("district2", textBox17.Text);
             command.Parameters.AddWithValue("exchange_data", $"{data.Month}/{data.Day}/{data.Year}");
 
             MessageBox.Show(command.ExecuteNonQuery().ToString());
@@ -135,20 +136,21 @@ namespace MiSPIS
 
         private void button7_Click(object sender, EventArgs e)
         {
+            string id = dataGridView1.SelectedRows[0].Cells["id"].Value.ToString();
+            SqlCommand command = new SqlCommand("$DELETE FROM [Clients] WHERE id = @id)", sqlConnection);
+            command.Parameters.AddWithValue("@id", id);
 
             string Message;
             Message = "Вы действительно хотите удалить запись?";
 
-            if (MessageBox.Show(Message, "Удаление",MessageBoxButtons.YesNo,MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (MessageBox.Show(Message, "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 return;
             }
 
-            string id;
-            id = dataGridView1.SelectedRows[0].Cells["id"].Value.ToString();
-
-            string sql = "Delete from DB where id =" + id;
-            //ExecSql(sql);
+            
+            //string sql = "Delete from DB where id =" + id;
+            MessageBox.Show(command.ExecuteNonQuery().ToString());
 
         }
     }
