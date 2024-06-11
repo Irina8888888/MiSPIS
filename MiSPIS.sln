@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiSPIS", "MiSPIS.csproj", "{3F55AD52-9E94-4B8A-AA01-682FDCB551E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiSPIS.Test", "..\MiSPIS.Test\MiSPIS.Test.csproj", "{EBF4B8BC-B448-4D35-B581-2607C6B19DD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3F55AD52-9E94-4B8A-AA01-682FDCB551E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F55AD52-9E94-4B8A-AA01-682FDCB551E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F55AD52-9E94-4B8A-AA01-682FDCB551E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBF4B8BC-B448-4D35-B581-2607C6B19DD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBF4B8BC-B448-4D35-B581-2607C6B19DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBF4B8BC-B448-4D35-B581-2607C6B19DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBF4B8BC-B448-4D35-B581-2607C6B19DD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,10 +11,11 @@ using System.Windows.Forms;
 using System.Configuration;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Security.Cryptography;
+using System.CodeDom;
 
 namespace MiSPIS
 {
-    public partial class Form2 : Form
+    public partial class Form2 : System.Windows.Forms.Form
     {
 
         public SqlConnection sqlConnection = null;
@@ -137,21 +138,33 @@ namespace MiSPIS
         private void button7_Click(object sender, EventArgs e)
         {
             string id = dataGridView1.SelectedRows[0].Cells["id"].Value.ToString();
-            SqlCommand command = new SqlCommand("$DELETE FROM [Clients] WHERE id = @id)", sqlConnection);
+            string deleteQuerty = "DELETE FROM [Clients] WHERE id = @id)";
+            SqlCommand command = new SqlCommand(deleteQuerty, sqlConnection);
             command.Parameters.AddWithValue("@id", id);
 
-            string Message;
-            Message = "Вы действительно хотите удалить запись?";
-
-            if (MessageBox.Show(Message, "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            try
             {
-                return;
+                sqlConnection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Вы действительно хотите удалить запись?");
+                }
+                else
+                {
+                    MessageBox.Show("Клиент не найден");
+
+                }
             }
 
-            
-            //string sql = "Delete from DB where id =" + id;
-            MessageBox.Show(command.ExecuteNonQuery().ToString());
 
+            finally
+            {
+                sqlConnection.Close();
+            }
+                    
+                      
+            
         }
     }
 
