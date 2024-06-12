@@ -18,6 +18,7 @@ namespace MiSPIS
     public partial class Form2 : System.Windows.Forms.Form
     {
 
+ 
         public SqlConnection sqlConnection = null;
 
         public string Txt
@@ -74,7 +75,7 @@ namespace MiSPIS
 
 
         //добавление
-             private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
              SqlCommand command = new SqlCommand
                 ($"INSERT INTO [Clients] (full_name,work_address,district,district_name) VALUES (@full_name,@work_address,@district,@district_name)", sqlConnection);

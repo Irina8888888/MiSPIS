@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace MiSPIS
 {
     class DataBase
     {
-        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\irisk\OneDrive\Desktop\Универ\3 курс\Методы и ср-ва проек-я инф. систем и технологий\n\MiSPISiT\MiSPIS\DB.mdf;Integrated Security=True");
+        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\irisk\OneDrive\Desktop\Универ\3 курс\Методы и ср-ва проек-я инф. систем и технологий\n\MiSPISiT\MiSPIS\DB.mdf;Integrated Security= True");
 
 
         public void OpenConnection()

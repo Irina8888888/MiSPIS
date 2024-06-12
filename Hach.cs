@@ -9,10 +9,10 @@ namespace MiSPIS
 {
     internal class Hach
     {
-        public static string PWhash(string password)
+        public static string PWhash(string textBox3)
         {
             MD5 md5 = MD5.Create();
-            byte[] b = Encoding.ASCII.GetBytes(password);
+            byte[] b = Encoding.ASCII.GetBytes(textBox3);
             byte[] hash = md5.ComputeHash(b);
 
             StringBuilder sb = new StringBuilder();
@@ -20,5 +20,12 @@ namespace MiSPIS
 
             return Convert.ToString(sb);
         }
+
+
+
+
+
+
+
     }
 }
