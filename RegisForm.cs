@@ -20,9 +20,9 @@ namespace MiSPIS
         private SqlConnection connection = null;
         public RegisForm()
         {
-            
+
             InitializeComponent();
-            textBox1.ForeColor = Color.Gray; textBox1.Text = "Введите фамилию"; 
+            textBox1.ForeColor = Color.Gray; textBox1.Text = "Введите фамилию";
             textBox2.ForeColor = Color.Gray; textBox2.Text = "Введите имя";
             textBox3.ForeColor = Color.Gray; textBox3.Text = "Введите логин";
             textBox4.ForeColor = Color.Gray; textBox4.Text = "Введите пароль"; textBox4.UseSystemPasswordChar = false;
@@ -164,6 +164,10 @@ namespace MiSPIS
             loginForTests = table.Rows[0]["login"].ToString();
         }
 
-
+        public string Hash(string pass)
+        {
+            hashForTests = Hach.PWhash(pass);
+            return hashForTests.ToString();
+        }
     }
 }
